@@ -60,6 +60,7 @@ async function main() {
 
     console.log('\n\n🗑️ Removing useless files...\n\n')
     execSync('npx rimraf ./.git')
+    fs.rmdirSync(path.join(projectPath, 'bin'), { recursive: true})
 
     console.log(
       // Green
