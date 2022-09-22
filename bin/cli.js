@@ -54,7 +54,7 @@ async function main() {
       '\x1b[36m%s\x1b[0m',
       '\n\n📥 Downloading files...\n\n'
     )
-    execSync(`git clone --depth 1 ${git_repo} ${projectPath}`)
+    execSync(`git clone ${git_repo} ${projectPath}`)
 
     process.chdir(projectPath)
 
