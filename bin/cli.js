@@ -89,8 +89,19 @@ async function main() {
         📁 cd ${projectName}
 
         📦 npm install     or      yarn install
-        🚀 npm run dev     or      yarn dev
 
+        🟢 npm run dev     or      yarn dev
+
+      ________________________________________________
+
+
+
+
+      To generate a deploy-ready SPA:
+
+      ________________________________________________
+
+        🚀 npm run prod     or      yarn prod
 
       ________________________________________________
 
