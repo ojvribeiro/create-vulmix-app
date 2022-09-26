@@ -9,16 +9,16 @@ if (process.argv.length < 3) {
     // Yellow
     '\x1b[33m%s\x1b[0m',
     `
-    
+
     ⚠️ You have to provide a name to your app.
 
     For example:
 
         npx create-vulmix-app my-app
-    
+
     `
   )
-  
+
   process.exit(1)
 }
 
@@ -35,9 +35,9 @@ try {
       // Yellow
       '\x1b[33m%s\x1b[0m',
       `
-      
+
     ⚠️ The folder "${projectName}" already exists in the current directory.
-      
+
       `
     )
   } else {
@@ -47,7 +47,6 @@ try {
 }
 
 async function main() {
-  
   try {
     console.log(
       // Cyan
@@ -74,19 +73,19 @@ async function main() {
       Next steps:
 
       ________________________________________________
-      
+
         📁 cd ${projectName}
-      
+
         📦 npm install     or      yarn install
-      
         🚀 npm run dev     or      yarn dev
 
+
       ________________________________________________
-        
+
 
 
       `
-    );
+    )
   } catch (error) {
     console.log('\x1b[31m%s\x1b[0m', error)
   }
