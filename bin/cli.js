@@ -51,19 +51,29 @@ async function main() {
     console.log(
       // Cyan
       '\x1b[36m%s\x1b[0m',
-      '\n\n📥 Downloading files...\n\n'
+      '\n\n📥 Downloading Vulmix...\n\n'
     )
     execSync(`git clone ${git_repo} ${projectPath}`)
 
     process.chdir(projectPath)
 
-    console.log('\n\n🗑️ Removing useless files...\n\n')
     execSync('npx rimraf ./.git')
+    console.log(
+      // Green
+      '\x1b[32m%s\x1b[0m',
+      '\n\n✔️ Download complete!\n\n'
+    )
+
+    console.log(
+      // Cyan
+      '\x1b[36m%s\x1b[0m',
+      '\n\n🗑️ Cleaning up...\n\n'
+    )
 
     console.log(
       // Green
       '\x1b[32m%s\x1b[0m',
-      '\n\n✔️ Thanks for using Vulmix!\n\n'
+      '\n\n💚 Thanks for using Vulmix!\n\n'
     )
 
     console.log(
