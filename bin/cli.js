@@ -57,7 +57,6 @@ async function main() {
 
     process.chdir(projectPath)
 
-    execSync('npx rimraf ./.git')
     console.log(
       // Green
       '\x1b[32m%s\x1b[0m',
@@ -68,6 +67,9 @@ async function main() {
       // Cyan
       '\x1b[36m%s\x1b[0m',
       '\n\n🗑️ Cleaning up...\n\n'
+    )
+    execSync(
+      'npx rimraf ./.git ./.github ./.prettierrc ./.editorconfig ./README.md'
     )
 
     console.log(
