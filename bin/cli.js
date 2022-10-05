@@ -23,9 +23,10 @@ if (process.argv.length < 3) {
 }
 
 const projectName = process.argv[2]
+const isBeta = process.argv[3] === '--beta' ? true : false
 const currentPath = process.cwd()
 const projectPath = path.join(currentPath, projectName)
-const git_repo = 'https://github.com/ojvribeiro/vulmix-starter-template.git'
+const git_repo = `https://github.com/ojvribeiro/vulmix${isBeta && '-starter-template'}.git`
 
 try {
   fs.mkdirSync(projectPath)
