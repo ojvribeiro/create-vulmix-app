@@ -3,6 +3,13 @@
 const { execSync } = require('child_process')
 const path = require('path')
 const fs = require('fs')
+const package = require('../package.json')
+
+console.log(
+  // Cyan
+  '\x1b[36m%s\x1b[0m',
+  `\n\ncreate-vulmix-app@${package.version}\n\n`
+)
 
 if (process.argv.length < 3) {
   console.log(
