@@ -36,7 +36,7 @@ const projectPath = projectName === '.' ? '.' : path.join(currentPath, projectNa
 const git_repo = `https://github.com/ojvribeiro/vulmix${isBeta && '-starter-template'}.git`
 
 try {
-  fs.mkdirSync(projectPath)
+  if (projectPath !== '.') fs.mkdirSync(projectPath)
 } catch (err) {
   if (err.code === 'EEXIST') {
     console.log(
