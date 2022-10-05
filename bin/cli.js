@@ -93,8 +93,12 @@ async function main() {
       Next steps:
 
       ________________________________________________
+        ${projectName !== '.' ?
+          `
 
-        📁 cd ${projectName}
+        📁 cd ${projectName}`
+          : ''
+        }
 
         📦 npm install     or      yarn install
 
