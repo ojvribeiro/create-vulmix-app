@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import chalk from 'chalk'
 
 const { execSync } = require('child_process')
 const path = require('path')
@@ -6,17 +7,13 @@ const fs = require('fs')
 const package = require('../package.json')
 
 console.log(
-  // Cyan
-  '\x1b[36m%s\x1b[0m',
-  `\n\ncreate-vulmix-app@${package.version}\n\n`,
-  `Installing vulmix-starter-template...\n\n`
+  chalk.cyan(`\n\ncreate-vulmix-app@${pkg.version}\n\n`,
+  `Installing vulmix-starter-template...\n\n`)
 )
 
 if (process.argv.length < 3) {
   console.log(
-    // Yellow
-    '\x1b[33m%s\x1b[0m',
-    `
+    chalk.yellow(`
 
     ⚠️ You have to provide a name to your app.
 
@@ -24,7 +21,7 @@ if (process.argv.length < 3) {
 
         npx create-vulmix-app my-app
 
-    `
+    `)
   )
 
   process.exit(1)
@@ -41,56 +38,37 @@ try {
 } catch (err) {
   if (err.code === 'EEXIST') {
     console.log(
-      // Yellow
-      '\x1b[33m%s\x1b[0m',
-      `
+      chalk.yellow(`
 
     ⚠️ The folder "${projectName}" already exists in the current directory.
 
-      `
+      `)
     )
   } else {
-    console.log('\x1b[31m%s\x1b[0m', error)
+    console.log(chalk.red(err))
   }
   process.exit(1)
 }
 
 async function main() {
   try {
-    console.log(
-      // Cyan
-      '\x1b[36m%s\x1b[0m',
-      '\n\n📥 Downloading Vulmix...\n\n'
+    console.log(chalk.cyan('\n\n📥 Downloading Vulmix...\n\n'))
     )
     execSync(`git clone ${isBeta ? '--branch dev' : ''} ${git_repo} ${projectPath}`)
 
     process.chdir(projectPath)
 
-    console.log(
-      // Green
-      '\x1b[32m%s\x1b[0m',
-      '\n\n✔️ Download complete!\n\n'
-    )
+    console.log(chalk.green('\n\n✔️ Download complete!\n\n'))
 
-    console.log(
-      // Cyan
-      '\x1b[36m%s\x1b[0m',
-      '\n\n🗑️ Cleaning up...\n\n'
-    )
+    console.log(chalk.cyan('\n\n🗑️ Cleaning up...\n\n'))
     execSync(
       'npx rimraf ./.git ./.github ./.prettierrc ./.editorconfig ./README.md'
     )
 
-    console.log(
-      // Green
-      '\x1b[32m%s\x1b[0m',
-      '\n\n💚 Thanks for using Vulmix!\n\n'
-    )
+    console.log(chalk.green('\n\n💚 Thanks for using Vulmix!\n\n'))
 
     console.log(
-      // Cyan
-      '\x1b[36m%s\x1b[0m',
-      `
+      chalk.cyan(`
       Next steps:
 
       ________________________________________________
@@ -120,10 +98,11 @@ async function main() {
 
 
 
-      `
+      `)
     )
   } catch (error) {
-    console.log('\x1b[31m%s\x1b[0m', error)
+    console.log(chalk.red(error))
   }
 }
 main()
+
