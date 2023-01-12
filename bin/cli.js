@@ -1,22 +1,19 @@
 #!/usr/bin/env node
+import chalk from 'chalk'
 
 const { execSync } = require('child_process')
 const path = require('path')
 const fs = require('fs')
-const package = require('../package.json')
+const pkg = require('../package.json')
 
 console.log(
-  // Cyan
-  '\x1b[36m%s\x1b[0m',
-  `\n\ncreate-vulmix-app@${package.version}\n\n`,
-  `Installing vulmix-starter-template...\n\n`
+  chalk.cyan(`\n\ncreate-vulmix-app@${pkg.version}\n\n`,
+  `Installing vulmix-starter-template...\n\n`)
 )
 
 if (process.argv.length < 3) {
   console.log(
-    // Yellow
-    '\x1b[33m%s\x1b[0m',
-    `
+    chalk.yellow(`
 
     ⚠️ You have to provide a name to your app.
 
@@ -24,7 +21,7 @@ if (process.argv.length < 3) {
 
         npx create-vulmix-app my-app
 
-    `
+    `)
   )
 
   process.exit(1)
@@ -33,97 +30,74 @@ if (process.argv.length < 3) {
 const projectName = process.argv[2]
 const isBeta = process.argv[3] === '--beta' ? true : false
 const currentPath = process.cwd()
-const projectPath = projectName === '.' ? '.' : path.join(currentPath, projectName)
-const git_repo = `https://github.com/ojvribeiro/vulmix-starter-template.git`
+const projectPath =
+  projectName === '.' ? '.' : path.join(currentPath, projectName)
+const git_repo = `ojvribeiro/vulmix-starter-template`
 
 try {
   if (projectPath !== '.') fs.mkdirSync(projectPath)
 } catch (err) {
   if (err.code === 'EEXIST') {
     console.log(
-      // Yellow
-      '\x1b[33m%s\x1b[0m',
-      `
+      chalk.yellow(`
 
     ⚠️ The folder "${projectName}" already exists in the current directory.
 
-      `
+      `)
     )
   } else {
-    console.log('\x1b[31m%s\x1b[0m', error)
+    console.log(chalk.red(err))
   }
   process.exit(1)
 }
 
 async function main() {
   try {
-    console.log(
-      // Cyan
-      '\x1b[36m%s\x1b[0m',
-      '\n\n📥 Downloading Vulmix...\n\n'
+    console.log(chalk.cyan('\n\n📥 Downloading Vulmix...\n\n'))
+
+    execSync(
+      `npx giget@latest gh:${git_repo}${isBeta ? '#dev' : ''} ${projectPath}`
     )
-    execSync(`git clone ${isBeta ? '--branch dev' : ''} ${git_repo} ${projectPath}`)
 
     process.chdir(projectPath)
 
-    console.log(
-      // Green
-      '\x1b[32m%s\x1b[0m',
-      '\n\n✔️ Download complete!\n\n'
-    )
+    console.log(chalk.green('\n\n✔️ Download complete!\n\n'))
 
-    console.log(
-      // Cyan
-      '\x1b[36m%s\x1b[0m',
-      '\n\n🗑️ Cleaning up...\n\n'
-    )
+    console.log(chalk.cyan('\n\n🗑️ Cleaning up...\n\n'))
     execSync(
       'npx rimraf ./.git ./.github ./.prettierrc ./.editorconfig ./README.md'
     )
 
-    console.log(
-      // Green
-      '\x1b[32m%s\x1b[0m',
-      '\n\n💚 Thanks for using Vulmix!\n\n'
-    )
+    console.log(chalk.green('\n\n💚 Thanks for using Vulmix!\n\n'))
 
     console.log(
-      // Cyan
-      '\x1b[36m%s\x1b[0m',
-      `
+      chalk.cyan(`
       Next steps:
 
-      ________________________________________________
-        ${projectName !== '.' ?
-          `
-
-        📁 cd ${projectName}`
-          : ''
+        ${
+          projectName !== '.'
+            ? `
+        ➜ cd ${projectName}`
+            : ''
         }
+        ➜ npm install     or      yarn install
+        ➜ npm run dev     or      yarn dev
 
-        📦 npm install     or      yarn install
-
-        🟢 npm run dev     or      yarn dev
-
-      ________________________________________________
-
-
-
+      _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
       To generate a deploy-ready SPA:
 
-      ________________________________________________
+        ➜ npm run prod     or      yarn prod
 
-        🚀 npm run prod     or      yarn prod
-
-      ________________________________________________
+      _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 
 
-      `
+      `)
     )
   } catch (error) {
-    console.log('\x1b[31m%s\x1b[0m', error)
+    console.log(chalk.red(error))
   }
 }
 main()
+
