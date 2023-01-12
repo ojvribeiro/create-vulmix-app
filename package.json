@@ -9,6 +9,7 @@
   "author": "Victor Ribeiro",
   "license": "MIT",
   "dependencies": {
+    "chalk": "^5.2.0",
     "rimraf": "^3.0.2"
   }
 }
