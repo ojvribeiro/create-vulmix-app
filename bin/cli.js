@@ -1,6 +1,5 @@
 #!/usr/bin/env node
-import chalk from 'chalk'
-
+const chalk = require('chalk')
 const { execSync } = require('child_process')
 const path = require('path')
 const fs = require('fs')
