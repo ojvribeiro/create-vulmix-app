@@ -74,30 +74,22 @@ async function main() {
       chalk.cyan(`
       Next steps:
 
-      ________________________________________________
-        ${projectName !== '.' ?
-          `
-
-        📁 cd ${projectName}`
-          : ''
+        ${
+          projectName !== '.'
+            ? `
+        ➜ cd ${projectName}`
+            : ''
         }
+        ➜ npm install     or      yarn install
+        ➜ npm run dev     or      yarn dev
 
-        📦 npm install     or      yarn install
-
-        🟢 npm run dev     or      yarn dev
-
-      ________________________________________________
-
-
-
+      _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
       To generate a deploy-ready SPA:
 
-      ________________________________________________
+        ➜ npm run prod     or      yarn prod
 
-        🚀 npm run prod     or      yarn prod
-
-      ________________________________________________
+      _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 
 
