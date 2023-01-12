@@ -4,7 +4,7 @@ import chalk from 'chalk'
 const { execSync } = require('child_process')
 const path = require('path')
 const fs = require('fs')
-const package = require('../package.json')
+const pkg = require('../package.json')
 
 console.log(
   chalk.cyan(`\n\ncreate-vulmix-app@${pkg.version}\n\n`,
