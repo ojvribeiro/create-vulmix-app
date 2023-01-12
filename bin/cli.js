@@ -30,8 +30,9 @@ if (process.argv.length < 3) {
 const projectName = process.argv[2]
 const isBeta = process.argv[3] === '--beta' ? true : false
 const currentPath = process.cwd()
-const projectPath = projectName === '.' ? '.' : path.join(currentPath, projectName)
-const git_repo = `https://github.com/ojvribeiro/vulmix-starter-template.git`
+const projectPath =
+  projectName === '.' ? '.' : path.join(currentPath, projectName)
+const git_repo = `ojvribeiro/vulmix-starter-template`
 
 try {
   if (projectPath !== '.') fs.mkdirSync(projectPath)
@@ -53,8 +54,10 @@ try {
 async function main() {
   try {
     console.log(chalk.cyan('\n\n📥 Downloading Vulmix...\n\n'))
+
+    execSync(
+      `npx giget@latest gh:${git_repo}${isBeta ? '#dev' : ''} ${projectPath}`
     )
-    execSync(`git clone ${isBeta ? '--branch dev' : ''} ${git_repo} ${projectPath}`)
 
     process.chdir(projectPath)
 
