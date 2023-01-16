@@ -75,8 +75,11 @@ async function main() {
 
     ${
       projectName !== '.'
-        ? `
-    ➜ cd ${projectName}`
+        ?
+    `➜ ${
+      chalk.white(
+        `cd ${projectName}`
+      )}`
         : ''
     }
     ➜ ${chalk.white(`npm install`)}     or      ${chalk.white(
