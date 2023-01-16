@@ -71,25 +71,23 @@ async function main() {
 
     console.log(
       chalk.cyan(`
-      Next steps:
+    Next steps:
 
-        ${
-          projectName !== '.'
-            ? `
-        ➜ cd ${projectName}`
-            : ''
-        }
-        ➜ npm install     or      yarn install
-        ➜ npm run dev     or      yarn dev
+    ${
+      projectName !== '.'
+        ? `
+    ➜ cd ${projectName}`
+        : ''
+    }
+    ➜ ${chalk.white(`npm install`)}     or      ${chalk.white(
+    `yarn install`
+    )}
+    ➜ ${chalk.white(`npm run dev`)}     or      ${chalk.white(`yarn dev`)}
 
-      _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
-      To generate a deploy-ready SPA:
+    To generate a deploy-ready SPA:
 
-        ➜ npm run prod     or      yarn prod
-
-      _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-
+    ➜ ${chalk.white(`npm run prod`)}     or      ${chalk.white(`yarn prod`)}
 
 
       `)
