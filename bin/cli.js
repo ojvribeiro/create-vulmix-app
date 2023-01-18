@@ -55,7 +55,7 @@ async function main() {
     console.log(chalk.cyan('\n\n📥 Downloading Vulmix...\n\n'))
 
     execSync(
-      `npx giget@latest gh:${git_repo}${isBeta ? '#dev' : ''} ${projectPath}`
+      `npx giget@latest gh:${git_repo}${isBeta ? '#dev' : ''} "${projectPath}"`
     )
 
     process.chdir(projectPath)
