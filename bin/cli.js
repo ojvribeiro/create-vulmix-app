@@ -5,20 +5,17 @@ const path = require('path')
 const fs = require('fs')
 const pkg = require('../package.json')
 
-console.log(
-  chalk.cyan(`\n\ncreate-vulmix-app@${pkg.version}\n\n`,
-  `Installing vulmix-starter-template...\n\n`)
-)
+console.log(chalk.cyan(`\n\ncreate-vulmix-app@${pkg.version}`))
 
 if (process.argv.length < 3) {
   console.log(
     chalk.yellow(`
 
-    ⚠️ You have to provide a name to your app.
+⚠️ You have to provide a name to your app.
 
-    For example:
+For example:
 
-        npx create-vulmix-app my-app
+    npx create-vulmix-app ${chalk.whiteBright(`my-app`)}
 
     `)
   )
@@ -40,9 +37,8 @@ try {
     console.log(
       chalk.yellow(`
 
-    ⚠️ The folder "${projectName}" already exists in the current directory.
-
-      `)
+⚠️ The folder "${projectName}" already exists in the current directory. Please, try a diferent name.
+    `)
     )
   } else {
     console.log(chalk.red(err))
@@ -52,7 +48,7 @@ try {
 
 async function main() {
   try {
-    console.log(chalk.cyan('\n\n📥 Downloading Vulmix...\n\n'))
+    console.log(chalk.cyan('\n\n📥 Downloading Vulmix...'))
 
     execSync(
       `npx giget@latest gh:${gitRepo}${isBeta ? '#dev' : ''} "${projectPath}"`
@@ -60,31 +56,20 @@ async function main() {
 
     process.chdir(projectPath)
 
-    console.log(chalk.green('\n\n✔️ Download complete!\n\n'))
+    console.log(chalk.green(`
 
-    console.log(chalk.cyan('\n\n🗑️ Cleaning up...\n\n'))
-    execSync(
-      'npx rimraf ./.git ./.github ./.prettierrc ./.editorconfig ./README.md'
-    )
+✔️ Download complete!
 
-    console.log(chalk.green('\n\n💚 Thanks for using Vulmix!\n\n'))
+💚 Thanks for using ${chalk.greenBright(`Vulmix`)}!
+
+`))
 
     console.log(
       chalk.cyan(`
-    Next steps:
+Next steps:
 
-    ${
-      projectName !== '.'
-        ?
-    `➜ ${
-      chalk.white(
-        `cd ${projectName}`
-      )}`
-        : ''
-    }
-    ➜ ${chalk.white(`npm install`)}     or      ${chalk.white(
-    `yarn install`
-    )}
+    ${projectName !== '.' ? `➜ ${chalk.white(`cd ${chalk.whiteBright(projectName)}`)}` : ''}
+    ➜ ${chalk.white(`npm install`)}     or      ${chalk.white(`yarn install`)}
     ➜ ${chalk.white(`npm run dev`)}     or      ${chalk.white(`yarn dev`)}
 
 
@@ -92,6 +77,7 @@ async function main() {
 
     ➜ ${chalk.white(`npm run prod`)}     or      ${chalk.white(`yarn prod`)}
 
+    Then you can use the \`_dist\` folder content in any static host.
 
       `)
     )
@@ -100,4 +86,3 @@ async function main() {
   }
 }
 main()
-
