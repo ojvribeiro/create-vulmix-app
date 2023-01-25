@@ -36,7 +36,6 @@ try {
   if (err.code === 'EEXIST') {
     console.log(
       chalk.yellow(`
-
 ⚠️ The folder "${projectName}" already exists in the current directory. Please, try a diferent name.
     `)
     )
@@ -48,7 +47,7 @@ try {
 
 async function main() {
   try {
-    console.log(chalk.cyan('\n\n📥 Downloading Vulmix...'))
+    console.log(chalk.cyan('Downloading Vulmix...'))
 
     execSync(
       `npx giget@latest gh:${gitRepo}${isBeta ? '#dev' : ''} "${projectPath}"`
@@ -56,29 +55,33 @@ async function main() {
 
     process.chdir(projectPath)
 
-    console.log(chalk.green(`
+    console.log(
+      chalk.green(`
 
 ✔️ Download complete!
 
 💚 Thanks for using ${chalk.greenBright(`Vulmix`)}!
-
-`))
+      `)
+    )
 
     console.log(
       chalk.cyan(`
 Next steps:
 
-    ${projectName !== '.' ? `➜ ${chalk.white(`cd ${chalk.whiteBright(projectName)}`)}` : ''}
+    ${
+      projectName !== '.'
+        ? `➜ ${chalk.white(`cd ${chalk.whiteBright(projectName)}`)}`
+        : ''
+    }
     ➜ ${chalk.white(`npm install`)}     or      ${chalk.white(`yarn install`)}
     ➜ ${chalk.white(`npm run dev`)}     or      ${chalk.white(`yarn dev`)}
 
 
-    To generate a deploy-ready SPA:
+To generate a deploy-ready SPA:
 
     ➜ ${chalk.white(`npm run prod`)}     or      ${chalk.white(`yarn prod`)}
 
-    Then you can use the \`_dist\` folder content in any static host.
-
+Then you can use the \`_dist\` folder content in any static host.
       `)
     )
   } catch (error) {
