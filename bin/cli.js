@@ -73,13 +73,13 @@ Next steps:
         ? `➜ ${chalk.white(`cd ${chalk.whiteBright(projectName)}`)}`
         : ''
     }
-    ➜ ${chalk.white(`npm install`)}     or      ${chalk.white(`yarn install`)}
-    ➜ ${chalk.white(`npm run dev`)}     or      ${chalk.white(`yarn dev`)}
+    ➜ ${chalk.white(`npm|yarn|bun install`)}
+    ➜ ${chalk.white(`npm|yarn|bun run dev`)}
 
 
 To generate a deploy-ready SPA:
 
-    ➜ ${chalk.white(`npm run prod`)}     or      ${chalk.white(`yarn prod`)}
+    ➜ ${chalk.white(`npm|yarn|bun run build`)}
 
 Then you can use the \`_dist\` folder content in any static host.
       `)
